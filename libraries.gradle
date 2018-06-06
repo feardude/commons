@@ -1,0 +1,28 @@
+ext {
+    V = [
+            commonsIo: "2.6",
+            jackson  : "2.9.5",
+            lombok   : "1.16.18",
+
+            slf4j    : "1.7.25",
+            log4j    : "2.11.0",
+
+            junit    : "4.12"
+    ]
+
+    libraries = [
+            commonsIo     : "commons-io:commons-io:${V.commonsIo}",
+            jackson2jsr310: "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${V.jackson}",
+            lombok        : "org.projectlombok:lombok:${V.lombok}",
+
+            logging       : [
+                    "org.slf4j:slf4j-api:${V.slf4j}",
+                    "org.apache.logging.log4j:log4j-api:${V.log4j}",
+                    "org.apache.logging.log4j:log4j-core:${V.log4j}"
+            ],
+
+            junit         : "junit:junit:${V.junit}"
+    ].withDefault({
+        key -> throw new IllegalAccessException("Unknown library '$key'")
+    })
+}

@@ -1,0 +1,25 @@
+apply from: 'libraries.gradle'
+
+allprojects {
+    group 'com.feardude'
+
+    apply plugin: 'idea'
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile libraries.commonsIo
+        compile libraries.jackson2jsr310
+        compile libraries.lombok
+
+        compile libraries.logging
+
+        testCompile libraries.junit
+    }
+}
