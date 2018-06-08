@@ -107,7 +107,7 @@ public final class ResourceUtils {
                     s, UTF_8
             );
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
     }
 

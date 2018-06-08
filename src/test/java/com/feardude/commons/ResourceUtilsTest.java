@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import static com.feardude.commons.ResourceUtils.readJson;
 import static com.feardude.commons.ResourceUtils.readJsonList;
 import static com.feardude.commons.ResourceUtils.readJsonMap;
 import static com.feardude.commons.ResourceUtils.readJsonMapValuesList;
+import static com.feardude.commons.ResourceUtils.readJsonMapValuesMap;
 import static com.feardude.commons.ResourceUtils.readResourceAsString;
 import static com.feardude.commons.ResourceUtils.writeJsonToTestResources;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -96,6 +98,21 @@ public class ResourceUtilsTest {
 
         final Map<Integer, List<String>> actual = readJsonMapValuesList(
                 "resource_utils/read_map_values_list.json", Integer.class, String.class
+        );
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void read_mapValuesInnerMap() {
+        final Map<String, LocalTime> innerMap = new HashMap<>(1);
+        innerMap.put("s1", LocalTime.parse("01:23:45"));
+
+        final Map<Integer, Map<String, LocalTime>> expected = new HashMap<>(1);
+        expected.put(1, innerMap);
+
+        final Map<Integer, Map<String, LocalTime>> actual = readJsonMapValuesMap(
+                "resource_utils/read_map_values_inner_map.json",
+                Integer.class, String.class, LocalTime.class
         );
         assertEquals(expected, actual);
     }
