@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -115,6 +116,36 @@ public class ResourceUtilsTest {
                 Integer.class, String.class, LocalTime.class
         );
         assertEquals(expected, actual);
+    }
+
+    @Test(expected = UncheckedIOException.class)
+    public void exceptionReadJson() {
+        readJson("resource_utils/invalid.json", Object.class);
+    }
+
+    @Test(expected = UncheckedIOException.class)
+    public void exceptionReadJsonList() {
+        readJsonList("resource_utils/invalid.json", Object.class);
+    }
+
+    @Test(expected = UncheckedIOException.class)
+    public void exceptionReadJsonMap() {
+        readJsonMap("resource_utils/invalid.json", Object.class, Object.class);
+    }
+
+    @Test(expected = UncheckedIOException.class)
+    public void exceptionReadJsonMapValuesList() {
+        readJsonMapValuesList("resource_utils/invalid.json", Object.class, Object.class);
+    }
+
+    @Test(expected = UncheckedIOException.class)
+    public void exceptionReadJsonMapValuesMap() {
+        readJsonMapValuesMap("resource_utils/invalid.json", Object.class, Object.class, Object.class);
+    }
+
+    @Test(expected = UncheckedIOException.class)
+    public void exceptionWriteJsonToResources() {
+        writeJsonToTestResources(new Object(), "resource_utils/invalid.json123");
     }
 
 
