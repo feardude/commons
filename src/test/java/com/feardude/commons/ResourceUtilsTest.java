@@ -34,7 +34,7 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void write_localDate() throws IOException {
+    public void writeLocalDate() throws IOException {
         final String expected = "2018-06-07";
         writeJsonToTestResources(LocalDate.parse(expected), "temp/local_date.json");
 
@@ -43,7 +43,7 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void write_localDateTime() throws IOException {
+    public void writeLocalDateTime() throws IOException {
         final String expected = "2018-06-07T01:23:45";
         writeJsonToTestResources(LocalDateTime.parse(expected), "temp/local_date_time.json");
 
@@ -52,14 +52,14 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void read_string() {
+    public void readString() {
         final String expected = "some string";
         final String actual = readResourceAsString("resource_utils/read_string.json");
         assertEquals(String.format("\"%s\"", expected), actual);
     }
 
     @Test
-    public void read_object() {
+    public void readObject() {
         final TestModel expected = new TestModel(
                 1, "model 1", asList(LocalDate.parse("2018-05-05"), LocalDate.parse("2018-06-06"))
         );
@@ -68,7 +68,7 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void read_list() {
+    public void readList() {
         final List<TestModel> expected = asList(
                 new TestModel(1, "model 1", singletonList(LocalDate.parse("2018-05-05"))),
                 new TestModel(2, "model 2", singletonList(LocalDate.parse("2018-06-06")))
@@ -78,7 +78,7 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void read_map() {
+    public void readMap() {
         final TestModel model1 = new TestModel(1, "model 1", singletonList(LocalDate.parse("2018-05-05")));
         final TestModel model2 = new TestModel(2, "model 2", singletonList(LocalDate.parse("2018-06-06")));
 
@@ -91,7 +91,7 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void read_mapValuesList() {
+    public void readMapValuesList() {
         final Map<Integer, List<String>> expected = new HashMap<>(2);
         expected.put(1, asList("s10", "s11"));
         expected.put(2, asList("s20", "s21"));
@@ -103,7 +103,7 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void read_mapValuesInnerMap() {
+    public void readMapValuesInnerMap() {
         final Map<String, LocalTime> innerMap = new HashMap<>(1);
         innerMap.put("s1", LocalTime.parse("01:23:45"));
 
