@@ -1,25 +1,34 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.8.2'
+}
+
+group 'com.feardude'
+version = '1.2.0'
+
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
 apply from: 'libraries.gradle'
+dependencies {
+    compile libraries.commonsIo
+    compile libraries.jackson2jsr310
+    compile libraries.lombok
 
-allprojects {
-    group 'com.feardude'
+    compile libraries.logging
 
-    apply plugin: 'idea'
-    apply plugin: 'java'
+    testCompile libraries.junit
+}
 
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        compile libraries.commonsIo
-        compile libraries.jackson2jsr310
-        compile libraries.lombok
-
-        compile libraries.logging
-
-        testCompile libraries.junit
+jacocoTestReport {
+    reports {
+        xml.enabled = true
     }
 }
